@@ -7,14 +7,37 @@ import re
 def escape_special_chars(line):
     return html.escape(line, quote=False)
 
+# Function to replace modular operator % with %Mod%
+def replace_mod_operator(line):
+    return line.replace('%', '%Mod%')
+
 # Function to wrap each line in <command></command> tags
 def wrap_with_command_tag(line):
     return f"      <command>{line}</command>"
 
+# Function to break up long lines at spaces
+def break_up_long_line(line, max_length=149):
+    if len(line) <= max_length:
+        return [line]
+    
+    words = line.split(' ')
+    lines = []
+    current_line = words[0]
+
+    for word in words[1:]:
+        # If adding the next word exceeds max_length, start a new line
+        if len(current_line) + 1 + len(word) > max_length:
+            lines.append(current_line)
+            current_line = word
+        else:
+            current_line += ' ' + word
+
+    lines.append(current_line)
+    return lines
+
 # Function to load boilerplate from a file
 def load_boilerplate(base_dir, file_name):
     file_path = os.path.join(base_dir, file_name)
-    print(f"Looking for boilerplate file: {file_path}")  # Debugging line to print file path
     if os.path.exists(file_path):
         with open(file_path, 'r') as file:
             return file.readlines()
@@ -76,15 +99,23 @@ def convert_xs_to_xml(input_file, output_file):
     base_dir = os.path.dirname(input_file)  # Get the directory of the input file
 
     # Load custom boilerplate files if they exist in the same directory as the input file
-    start_boilerplate = load_boilerplate(base_dir, f'{file_name_without_ext}_start.xml')
-    end_boilerplate = load_boilerplate(base_dir, f'{file_name_without_ext}_end.xml') 
+    start_boilerplate = load_boilerplate(base_dir, f'{file_name_without_ext}_start.boiler')
+    end_boilerplate = load_boilerplate(base_dir, f'{file_name_without_ext}_end.boiler') 
 
     with open(input_file, 'r') as xs_file, open(output_file, 'w') as xml_file:
+
+        xml_file.write(f'<?xml version="1.0" encoding="utf-8"?>\n')
+        xml_file.write(f'<trigger version="2">\n')
+        xml_file.write(f'  <conditions>\n')
+        xml_file.write(f'  </conditions>\n')
+        xml_file.write(f'  <effects>\n')
+
         if start_boilerplate:
             xml_file.writelines(start_boilerplate)
         else:
             # Default start boilerplate
             xml_file.write(f'    <effect name="Script: {file_name_without_ext}">\n')
+            xml_file.write(f'      <param name="Mod" dispname="Mod" vartype="hidden">%%</param>\n')
             xml_file.write(f'      <command>xsDisableRule("_{file_name_without_ext}");</command>\n')
             xml_file.write(f'      <command>trDisableRule("{file_name_without_ext}");</command>\n')
             xml_file.write('      <command>}</command>\n')
@@ -98,11 +129,18 @@ def convert_xs_to_xml(input_file, output_file):
         # Merge brackets onto the previous line
         merged_lines = merge_brackets_to_previous(lines)
 
-        # Convert to XML format
+        # Convert to XML format and break up long lines
         for line in merged_lines:
             escaped_line = escape_special_chars(line)
-            xml_line = wrap_with_command_tag(escaped_line)
-            xml_file.write(xml_line + "\n")
+            mod_replaced_line = replace_mod_operator(escaped_line)  # Replace % with %Mod%
+
+            # Break up long lines
+            split_lines = break_up_long_line(mod_replaced_line)
+
+            # Write each line wrapped in <command> tags
+            for split_line in split_lines:
+                xml_line = wrap_with_command_tag(split_line)
+                xml_file.write(xml_line + "\n")
 
         # Write the end boilerplate
         if end_boilerplate:
@@ -117,6 +155,9 @@ def convert_xs_to_xml(input_file, output_file):
             xml_file.write(f'      <command>xsDisableRule("_{file_name_without_ext}_end");</command>\n')
             xml_file.write(f'      <command>trDisableRule("{file_name_without_ext}_end");</command>\n')
             xml_file.write('    </effect>\n')
+
+        xml_file.write(f'  </effects>\n')
+        xml_file.write(f'</trigger>\n')
 
     print(f"Converted {input_file} to {output_file}")
 
