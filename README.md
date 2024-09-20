@@ -8,8 +8,8 @@ trigger\.vscode\launch.json
 trigger\.vscode\tasks.json
 trigger\scripts\xs_to_xml_dir.py
 
-trigger\scripts\<project 1>\ProjectScripts_start.xml
-trigger\scripts\<project 1>\ProjectScripts_end.xml
+trigger\scripts\<project 1>\ProjectScripts_start.boiler
+trigger\scripts\<project 1>\ProjectScripts_end.boiler
 trigger\scripts\<project 1>\ProjectScripts.xs
 
 trigger\scripts\<project 2>\ProjectScripts.xs
@@ -28,4 +28,4 @@ You will need to have the python extensions for VS code installed.
 I use Task Runner by Sana Ajani to run the tasks.
 
 Additional usage:
-For any .xs file, you can create a <name>_start.xml or a <name>_end.xml, if so the boilerplate that's added to the start or end of the file to make it a working trigger will be replaced by the contents of the _start or _end file. This allows you to create custom boilerplate for certain scripts.
+For any .xs file, you can create a <name>_start.boiler or a <name>_end.boiler, if so the boilerplate that's added to the start or end of the file to make it a working trigger will be replaced by the contents of the _start or _end file. This allows you to create custom boilerplate for certain scripts.
