@@ -1,5 +1,5 @@
 # XS-To-XML
-An XS script to XML converter to turn an XS script into a trigger.
+An XS script to XML converter to turn an XS script into trigger XML for Age of Mythology Retold.
 
 I open a VS Code workspace to .\Age of Mythology Retold\<user ID>\trigger
 My trigger folder root looks like:
