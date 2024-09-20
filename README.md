@@ -8,7 +8,10 @@ trigger\.vscode\launch.json
 trigger\.vscode\tasks.json
 trigger\scripts\xs_to_xml_dir.py
 
+trigger\scripts\<project 1>\ProjectScripts_start.xml
+trigger\scripts\<project 1>\ProjectScripts_end.xml
 trigger\scripts\<project 1>\ProjectScripts.xs
+
 trigger\scripts\<project 2>\ProjectScripts.xs
 ... etc
 
