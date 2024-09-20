@@ -1,0 +1,46 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Convert XS to XML",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/xs_to_xml_dir.py",
+          "${file}"
+        ],
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Convert All XS in Folder",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/xs_to_xml_dir.py",
+          "${fileDirname}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      }
+    ]
+  }
+  
