@@ -1,0 +1,161 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Convert XS to XML",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/convert_xs_to_xml.py",
+          "${file}"
+        ],
+        "group": {
+          "kind": "test",
+          "isDefault": true
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Convert All XS in Folder",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/convert_xs_to_xml.py",
+          "${fileDirname}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": false
+        },
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared"
+        },
+        "problemMatcher": []
+      },
+      {
+        "label": "Merge XML file into trigger_data.xml",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/merge_trigger_data.py",
+          "${file}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "detail": "Merges the selected XML file or folder of XML files into trigger_data.xml"
+      },
+      {
+        "label": "Merge XML folder into trigger_data.xml",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/merge_trigger_data.py",
+          "${fileDirname}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "detail": "Merges the selected XML file or folder of XML files into trigger_data.xml"
+      },
+      {
+        "label": "Removes XML file from trigger_data.xml",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/remove_trigger_data.py",
+          "${file}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "detail": "Removes the selected XML file from trigger_data.xml"
+      },
+      {
+        "label": "Removes XML folder from trigger_data.xml",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/remove_trigger_data.py",
+          "${fileDirname}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "detail": "Removes the selected XML folder of XML files from trigger_data.xml"
+      },
+      {
+        "label": "Parses out DoxyGen .html files",
+        "type": "shell",
+        "command": "python",
+        "args": [
+          "${workspaceFolder}/scripts/parse_out_doxygen.py",
+          "${workspaceFolder}"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "problemMatcher": [],
+        "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": false,
+          "panel": "shared",
+          "showReuseMessage": true,
+          "clear": false
+        },
+        "detail": "Parses out the trigger data from DoxyGen .html files"
+      }
+    ]
+  }
+  

@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "checkJs": true,        // Enable type checking for JS (or JS-like files)
+      "target": "es6",
+      "module": "commonjs"
+    },
+    "include": [
+      "scripts/**/*.xs",      // Include all your XS files
+      "other_folder/**/*.xs"
+    ]
+  }
+  

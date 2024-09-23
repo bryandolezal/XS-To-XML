@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "CustomXS",
+            "includePath": [
+                "${workspaceFolder}/**",            // Include all files in the workspace
+                "${workspaceFolder}/**/*.xs"        // Include XS script files
+            ],
+            "defines": [],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "${workspaceFolder}/**/*.xs"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 4
+}
