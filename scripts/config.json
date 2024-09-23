@@ -1,0 +1,16 @@
+{
+  "converter_paths": {
+    "_comment": "Directoires are relative to your vscode ${workspaceFolder} directory",
+    "base_xs_directory": "./xs",
+    "output_xml_directory": "./xml"
+  },
+  "merger_paths": {
+    "_comment": "Full or relative path to AoMR trigger_data.xml file",
+    "game_data_trigger_path": "../../../Game/Data/trigger/trigger_data.xml"
+  },
+  "doxygen_html_paths": {
+    "_comment": "Directoires are relative to your vscode ${workspaceFolder} directory. Output_file is the path/<name> of the output file. The scripts outputs three files, a .json, .xs, and .js",
+    "html_src": "./references/doxygen_html",
+    "output_file": "./references/xs/xs_reference"
+  }
+}
