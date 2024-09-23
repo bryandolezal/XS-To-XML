@@ -36,7 +36,7 @@ You will need to have the python extensions for VS code installed. You will need
 
 ## Convert XS To XML
 
-Converts a given .xs file or directory tree of .xs files to .xml file(s). The .xml files are stripped of comments and compacted to reduce line count in the games trigger_data.xml
+Converts the selected .xs file or directory tree of .xs files to .xml file(s). The .xml files are stripped of comments and compacted to reduce line count in the games trigger_data.xml
 
 Additional usage:
 For any .xs file, you can create a <name>_start.boiler or a <name>_end.boiler, if so the boilerplate that's added to the start or end of the file to make it a working trigger will be replaced by the contents of the _start or _end file. This allows you to create custom boilerplate for certain scripts.
